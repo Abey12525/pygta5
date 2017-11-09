@@ -21,7 +21,7 @@ def roi(img, vertices):
     return masked
 
 
-def draw_lanes(img, lines, color=[0, 255, 255], thickness=3):
+def draw_lanes(lines, color=[0, 255, 255], thickness=3):
 
     # if this fails, go with some default line
     try:
@@ -128,7 +128,7 @@ def process_img(image):
     #                                     rho   theta   thresh  min length, max gap:        
     lines = cv2.HoughLinesP(processed_img, 1, np.pi/180, 180,      20,       15)
     try:
-        l1, l2 = draw_lanes(original_image,lines)
+        l1, l2 = draw_lanes(lines)
         cv2.line(original_image, (l1[0], l1[1]), (l1[2], l1[3]), [0,255,0], 30)
         cv2.line(original_image, (l2[0], l2[1]), (l2[2], l2[3]), [0,255,0], 30)
     except Exception as e:
